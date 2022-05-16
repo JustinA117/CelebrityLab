@@ -12,26 +12,28 @@ public class CelebrityGame
 	/**
 	 * A reference to a Celebrity or subclass instance.
 	 */
-	private gameCelebrity()
+	 Celebrity gameCelebrity()
 {
-	
+		Celebrity gameCelebrity = new Celebrity();
+  
 }
 	
 
 	/**
 	 * The GUI frame for the Celebrity game.
-	 */ CelebrityFrame gameWindow; 
+	 */  CelebrityFrame gameWindow; 
 
 	/**
 	 * The ArrayList of Celebrity values that make up the game
-	 */ ArrayList<String> celebGameList = new ArrayList<String>(); 
+	 */private ArrayList<Celebrity> celebGameList;  
 
 	/**
 	 * Builds the game and starts the GUI
 	 */
 	public CelebrityGame()
 	{
-		gameWindow = new CelebrityFrame(this);
+	  gameWindow = new CelebrityFrame(this);
+    celebGameList = new ArrayList<Celebrity>();
 	}
 
  /**
@@ -53,10 +55,21 @@ public class CelebrityGame
 	 */
 	public boolean processGuess(String guess)
 	{
-    /* To be implemented */
-
-		return false;
+// uses the trum method to ignore spaces and ignore case to ignore the uppercase letters
+    if (guess.trim().equalsIgnoreCase(gameCelebrity.getName())){
+    celebGameList.remove(0); 
+    if (celebGameList.size() > 0){
+      gameCelebrity= celebGameList.get(0);
+    } else
+    {
+    gameCelebrity = new Celebrity("",""); 
+    }
+		return true;
 	}
+else {
+return false; 
+}
+}
   /**
    * Asserts that the list is initialized and contains at least one Celebrity.
    * Sets the current celebrity as the first item in the list. Opens the game
@@ -83,7 +96,12 @@ public class CelebrityGame
 	 */
 	public void addCelebrity(String name, String guess, String type)
 	{
-		/* to be implemented */
+    if (validateCelebrity(name) && validateClue(guess,"")){
+      celebGameList.add(newCelebrity(name, guess));
+    }
+    else {
+      System.out.println("Cannot add this celbrity)"); 
+    }
 	}
 
 	/**
@@ -94,12 +112,13 @@ public class CelebrityGame
 	public boolean validateCelebrity(String name)
 	{
 	
-	if (gameCelebrity.equals(guessCelebrity.trim()))
+	if (name.trim().equals(name)&&(name.length()>=4))
 	{
 		return true; 
 	}
+    else{
 		return false;
-	}
+	}}
 
 	/**
 	 * Checks that the supplied clue has at least 10 characters or is a series of clues
@@ -110,10 +129,12 @@ public class CelebrityGame
 	 */
 	public boolean validateClue(String clue, String type)
 	{
-    /* To be implemented */
+    if (clue.trim().equals(clue)&&(clue.length() >= 10)){
+		return true;
+	} else 
+    {return false;}
+    }
 
-		return false;
-	}
 
 	/**
 	 * Accessor method for the current size of the list of celebrities
@@ -122,9 +143,7 @@ public class CelebrityGame
 	 */
 	public int getCelebrityGameSize()
 {
-    /* To be implemented */
-
-		return 0;
+    return celebGameList.size(); 
 	}
 
 	/**
@@ -137,6 +156,5 @@ public class CelebrityGame
 	{
     /* To be implemented */
 
-		return null;
-	}
+return gameCelebrity.getClue();	}
 }
