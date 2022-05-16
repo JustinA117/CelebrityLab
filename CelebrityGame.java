@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  * The framework for the Celebrity Game project
@@ -12,9 +12,9 @@ public class CelebrityGame
 	/**
 	 * A reference to a Celebrity or subclass instance.
 	 */
-	 Celebrity gameCelebrity()
+	 Celebrity gameCelebrity; 
 {
-		Celebrity gameCelebrity = new Celebrity();
+		//Celebrity gameCelebrity = new Celebrity();
   
 }
 	
@@ -98,7 +98,7 @@ return false;
 	public void addCelebrity(String name, String guess, String type)
 	{
     if (validateCelebrity(name) && validateClue(guess,"")){
-      celebGameList.add(newCelebrity(name, guess, type));
+      celebGameList.add(new Celebrity(name, guess, type));
     }
     else {
       System.out.println("Cannot add this celbrity)"); 
@@ -158,4 +158,5 @@ return false;
     /* To be implemented */
 
 return gameCelebrity.getClue();	
+}
 }
