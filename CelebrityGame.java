@@ -56,13 +56,14 @@ public class CelebrityGame
 	public boolean processGuess(String guess)
 	{
 // uses the trum method to ignore spaces and ignore case to ignore the uppercase letters
-    if (guess.trim().equalsIgnoreCase(gameCelebrity.getName())){
+    String trimGuess = guess.trim();
+    if (trimGuess.equalsIgnoreCase(gameCelebrity.getName())){
     celebGameList.remove(0); 
     if (celebGameList.size() > 0){
       gameCelebrity= celebGameList.get(0);
     } else
     {
-    gameCelebrity = new Celebrity("",""); 
+    gameCelebrity = new Celebrity("","",""); 
     }
 		return true;
 	}
@@ -97,7 +98,7 @@ return false;
 	public void addCelebrity(String name, String guess, String type)
 	{
     if (validateCelebrity(name) && validateClue(guess,"")){
-      celebGameList.add(newCelebrity(name, guess));
+      celebGameList.add(newCelebrity(name, guess, type));
     }
     else {
       System.out.println("Cannot add this celbrity)"); 
@@ -156,5 +157,5 @@ return false;
 	{
     /* To be implemented */
 
-return gameCelebrity.getClue();	}
+return gameCelebrity.getClue();	
 }
